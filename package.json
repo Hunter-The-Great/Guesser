@@ -1,0 +1,28 @@
+{
+  "name": "guesser",
+  "version": "1.0.0",
+  "description": "it da bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "bun run index.ts",
+    "dev": "bun run --watch index.ts",
+    "db-gen": "bun x prisma generate",
+    "db-push": "bun x prisma db push",
+    "cmd": "bun run deploy-commands.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.4",
+    "nodemon": "^3.0.3",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@typescript-eslint/parser": "^7.2.0",
+    "eslint": "^8.57.0",
+    "prettier": "2.8.8"
+  }
+}

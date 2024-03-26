@@ -1,0 +1,49 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String          @id
+  username         String
+  //? display name
+  guessingPoints   Int             @default(0)
+  guessingAttempts Int             @default(0)
+  bot              Boolean         @default(false)
+  messages         Message[]
+  savedAt          DateTime        @default(now())
+}
+
+model Message {
+  id        String   @id
+  guildID   String
+  channel   String
+  author    String
+  timestamp DateTime
+  content   String   @db.VarChar(4000)
+  guild     Guild    @relation(fields: [guildID], references: [id])
+  user      User     @relation(fields: [author], references: [id])
+  savedAt   DateTime @default(now())
+}
+
+model Guild {
+  id             String          @id
+  logging        Boolean         @default(false)
+  savedAt        DateTime        @default(now())
+  messages       Message[]
+  activeChannels activeChannel[]
+}
+
+model activeChannel {
+  id      String @id
+  guildID String
+  guild   Guild  @relation(fields: [guildID], references: [id])
+}
