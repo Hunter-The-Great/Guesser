@@ -1,5 +1,6 @@
 import { Events, Message } from "discord.js";
 import { prisma } from "../utilities/db";
+import { sentry } from "../utilities/sentry";
 
 const name = Events.MessageUpdate;
 
@@ -54,6 +55,7 @@ const execute = async (oldMessage: Message, newMessage: Message) => {
             },
         });
     } catch (err) {
+        sentry.captureException(err);
         console.error(
             `Failed to update message:
             ID: ${newMessage.id}

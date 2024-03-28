@@ -1,5 +1,6 @@
 import { Events, Message } from "discord.js";
 import { prisma } from "../utilities/db";
+import { sentry } from "../utilities/sentry";
 
 const name = Events.MessageCreate;
 
@@ -52,6 +53,7 @@ const execute = async (message: Message) => {
             },
         });
     } catch (err) {
+        sentry.captureException(err);
         console.error("An error has occurred:\n", err);
     }
 };

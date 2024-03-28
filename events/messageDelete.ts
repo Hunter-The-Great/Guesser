@@ -1,5 +1,6 @@
 import { Events, Message } from "discord.js";
 import { prisma } from "../utilities/db";
+import { sentry } from "../utilities/sentry";
 
 const name = Events.MessageDelete;
 
@@ -25,6 +26,7 @@ const execute = async (message: Message) => {
 
         await prisma.message.delete({ where: { id: message.id } });
     } catch (err) {
+        sentry.captureException(err);
         console.error(
             `Failed to delete message:
             ID: ${message.id}

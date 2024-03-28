@@ -1,4 +1,5 @@
 import { Events, Interaction } from "discord.js";
+import { sentry } from "../utilities/sentry";
 
 const name = Events.InteractionCreate;
 
@@ -24,6 +25,7 @@ const execute = async (interaction: Interaction) => {
             }
             await command.execute(interaction);
         } catch (err) {
+            sentry.captureException(err);
             console.error("An error has occurred:\n", err);
             try {
                 if (interaction.isRepliable()) {
@@ -39,6 +41,7 @@ const execute = async (interaction: Interaction) => {
                 }
             } catch (err1) {
                 console.log("\nA message could not be sent");
+                // Maybe log this with sentry?
                 return;
             }
         }
