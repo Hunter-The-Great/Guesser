@@ -5,25 +5,26 @@ const name = Events.MessageCreate;
 
 const execute = async (message: Message) => {
     if (!message.guild) return;
-    await prisma.guild.upsert({
-        where: {
-            id: message.guild.id,
-        },
-        create: {
-            id: message.guild.id,
-        },
-        update: {},
-    });
-    const guild = await prisma.guild.findUnique({
-        where: {
-            id: message.guild.id,
-        },
-    });
-
-    if (!guild?.logging || message.content === "") {
-        return;
-    }
     try {
+        await prisma.guild.upsert({
+            where: {
+                id: message.guild.id,
+            },
+            create: {
+                id: message.guild.id,
+            },
+            update: {},
+        });
+        const guild = await prisma.guild.findUnique({
+            where: {
+                id: message.guild.id,
+            },
+        });
+
+        if (!guild?.logging || message.content === "") {
+            return;
+        }
+
         await prisma.message.create({
             data: {
                 id: message.id,

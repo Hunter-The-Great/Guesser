@@ -8,23 +8,24 @@ const execute = async (oldMessage: Message, newMessage: Message) => {
     if (!(oldMessage.guild && newMessage.guild)) return;
     if (oldMessage.channel.isDMBased() || newMessage.channel.isDMBased())
         return;
-    await prisma.guild.upsert({
-        where: {
-            id: oldMessage.guild.id,
-        },
-        create: {
-            id: oldMessage.guild.id,
-        },
-        update: {},
-    });
-    const guild = await prisma.guild.findUnique({
-        where: {
-            id: oldMessage.guild.id,
-        },
-    });
-    if (!guild || !guild.logging) return;
 
     try {
+        await prisma.guild.upsert({
+            where: {
+                id: oldMessage.guild.id,
+            },
+            create: {
+                id: oldMessage.guild.id,
+            },
+            update: {},
+        });
+        const guild = await prisma.guild.findUnique({
+            where: {
+                id: oldMessage.guild.id,
+            },
+        });
+        if (!guild || !guild.logging) return;
+
         await prisma.message.upsert({
             where: { id: oldMessage.id },
             update: { content: newMessage.content },

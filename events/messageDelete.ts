@@ -5,23 +5,24 @@ const name = Events.MessageDelete;
 
 const execute = async (message: Message) => {
     if (!message.guild || message.channel.isDMBased()) return;
-    await prisma.guild.upsert({
-        where: {
-            id: message.guild.id,
-        },
-        create: {
-            id: message.guild.id,
-        },
-        update: {},
-    });
-    const guild = await prisma.guild.findUnique({
-        where: {
-            id: message.guild.id,
-        },
-    });
-    if (!guild || !guild.logging) return;
 
     try {
+        await prisma.guild.upsert({
+            where: {
+                id: message.guild.id,
+            },
+            create: {
+                id: message.guild.id,
+            },
+            update: {},
+        });
+        const guild = await prisma.guild.findUnique({
+            where: {
+                id: message.guild.id,
+            },
+        });
+        if (!guild || !guild.logging) return;
+
         await prisma.message.delete({ where: { id: message.id } });
     } catch (err) {
         console.error(
