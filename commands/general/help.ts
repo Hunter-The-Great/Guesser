@@ -20,8 +20,8 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
             iconURL: interaction.user.displayAvatarURL(),
         })
         .addFields({
-            name: "__**IDK**__",
-            value: "**IDK**: Something here.",
+            name: "_**In progress**__",
+            value: "I'll update this menu soon.",
             inline: true,
         })
         .setFooter({
