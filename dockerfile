@@ -12,5 +12,3 @@ COPY . .
 RUN bun run db-gen
 
 CMD ["bun", "run", "start"]
-
-
