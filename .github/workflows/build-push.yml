@@ -6,7 +6,18 @@ on:
             - "main"
 
 jobs:
-    docker:
+  commands:
+        name: Deploy Commands
+        runs-on: ubuntu-latest
+        env:
+          TOKEN: ${{secrets.TOKEN}}
+          CLIENT_ID: ${{secrets.CLIENT_ID}}
+        steps:
+              - uses: actions/checkout@v4
+              - uses: oven-sh/setup-bun@v1
+              - run: bun install
+              - run: bun run cmd
+    Docker:
         runs-on: ubuntu-latest
         steps:
             - name: Set up QEMU
