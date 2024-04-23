@@ -6,7 +6,7 @@ on:
             - "main"
 
 jobs:
-  commands:
+    commands:
         name: Deploy Commands
         runs-on: ubuntu-latest
         env:
