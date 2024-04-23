@@ -12,14 +12,14 @@ datasource db {
 }
 
 model User {
-  id               String          @id
+  id               String    @id
   username         String
   //? display name
-  guessingPoints   Int             @default(0)
-  guessingAttempts Int             @default(0)
-  bot              Boolean         @default(false)
+  guessingPoints   Int       @default(0)
+  guessingAttempts Int       @default(0)
+  bot              Boolean   @default(false)
   messages         Message[]
-  savedAt          DateTime        @default(now())
+  savedAt          DateTime  @default(now())
 }
 
 model Message {
@@ -46,4 +46,12 @@ model activeChannel {
   id      String @id
   guildID String
   guild   Guild  @relation(fields: [guildID], references: [id])
+}
+
+model feedback {
+  id      String   @id @default(cuid())
+  message String   @db.VarChar(500)
+  savedAt DateTime @default(now())
+
+  @@fulltext([message])
 }

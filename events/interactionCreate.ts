@@ -45,6 +45,15 @@ const execute = async (interaction: Interaction) => {
                 return;
             }
         }
+    } else if (interaction.isModalSubmit()) {
+        try {
+            //@ts-ignore
+            const modal = interaction.client.modals.get(interaction.customId);
+            await modal.execute(interaction);
+        } catch (err) {
+            console.error("An error has occurred:\n", err);
+            sentry.captureException(err);
+        }
     } else {
         return;
     }
