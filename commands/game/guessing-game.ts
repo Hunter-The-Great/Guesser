@@ -108,7 +108,11 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                     break;
                 start = randDate.valueOf();
             }
-            if (message.content === "" || message.author.bot) {
+            if (
+                !message.content ||
+                message.content === "" ||
+                message.author.bot
+            ) {
                 await interaction.editReply({
                     content: "Unable to find suitable message.",
                 });
@@ -227,9 +231,17 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                     return;
                 }
                 guessed.push(i.user.id);
-                await prisma.user.update({
+                await prisma.user.upsert({
                     where: { id: i.user.id },
-                    data: {
+                    create: {
+                        id: i.user.id,
+                        username: i.user.username,
+                        bot: i.user.bot,
+                        guessingAttempts: 1,
+                        guessingPoints:
+                            i.customId.split(":")[1] === correctAnswer ? 1 : 0,
+                    },
+                    update: {
                         guessingAttempts: { increment: 1 },
                         guessingPoints: {
                             increment:

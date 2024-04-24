@@ -1,5 +1,6 @@
 import { Events, Interaction } from "discord.js";
 import { sentry } from "../utilities/sentry";
+import { prisma } from "../utilities/db";
 
 const name = Events.InteractionCreate;
 
@@ -8,6 +9,17 @@ const execute = async (interaction: Interaction) => {
         console.log("interaction is undefined");
         return;
     }
+    await prisma.user.upsert({
+        where: {
+            id: interaction.user.id,
+        },
+        create: {
+            id: interaction.user.id,
+            username: interaction.user.username,
+            bot: interaction.user.bot,
+        },
+        update: {},
+    });
     if (interaction.user.bot) {
         return;
     }

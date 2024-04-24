@@ -7,6 +7,17 @@ const name = Events.MessageCreate;
 const execute = async (message: Message) => {
     if (!message.guild) return;
     try {
+        await prisma.user.upsert({
+            where: {
+                id: message.author.id,
+            },
+            create: {
+                id: message.author.id,
+                username: message.author.username,
+                bot: message.author.bot,
+            },
+            update: {},
+        });
         await prisma.guild.upsert({
             where: {
                 id: message.guild.id,
