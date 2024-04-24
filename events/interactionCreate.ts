@@ -1,6 +1,7 @@
 import { Events, Interaction } from "discord.js";
 import { sentry } from "../utilities/sentry";
 import { prisma } from "../utilities/db";
+import { posthog } from "../utilities/posthog";
 
 const name = Events.InteractionCreate;
 
@@ -24,7 +25,6 @@ const execute = async (interaction: Interaction) => {
         return;
     }
     if (interaction.isChatInputCommand()) {
-        //* -------------------------------------------------------------------- slash commands
         try {
             //@ts-ignore
             const command = interaction.client.commands.get(
@@ -56,6 +56,26 @@ const execute = async (interaction: Interaction) => {
                 // Maybe log this with sentry?
                 return;
             }
+        }
+        try {
+            console.log("E");
+            posthog.capture({
+                event: "guesser-command",
+                distinctId: interaction.user.id,
+                properties: {
+                    user: interaction.user.username,
+                    guild: interaction.guild?.name,
+                    name: interaction.commandName,
+                    //@ts-ignore
+                    subcommand: interaction.options._subcommand,
+                    //@ts-ignore
+                    options: interaction.options._hoistedOptions,
+                },
+            });
+            console.log("f");
+        } catch (err) {
+            console.error("Posthog Error:\n", err);
+            sentry.captureException(err);
         }
     } else if (interaction.isModalSubmit()) {
         try {

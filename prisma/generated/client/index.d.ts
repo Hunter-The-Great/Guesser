@@ -267,7 +267,7 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.13.0
+   * Prisma Client JS version: 5.11.0
    * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
    */
   export type PrismaVersion = {
@@ -395,11 +395,6 @@ export namespace Prisma {
     include: any
   }
 
-  type SelectAndOmit = {
-    select: any
-    omit: any
-  }
-
   /**
    * Get the type of the value, that the Promise holds.
    */
@@ -448,9 +443,7 @@ export namespace Prisma {
   } &
     (T extends SelectAndInclude
       ? 'Please either choose `select` or `include`.'
-      : T extends SelectAndOmit
-        ? 'Please either choose `select` or `omit`.'
-        : {})
+      : {})
 
   /**
    * Subset + Intersection
@@ -1209,6 +1202,7 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
+
   /**
    * UserCountOutputType without action
    */
@@ -1219,12 +1213,14 @@ export namespace Prisma {
     select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * UserCountOutputType without action
    */
   export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
   }
+
 
 
   /**
@@ -1242,6 +1238,7 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
+
   /**
    * GuildCountOutputType without action
    */
@@ -1252,6 +1249,7 @@ export namespace Prisma {
     select?: GuildCountOutputTypeSelect<ExtArgs> | null
   }
 
+
   /**
    * GuildCountOutputType without action
    */
@@ -1259,12 +1257,14 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
+
   /**
    * GuildCountOutputType without action
    */
   export type GuildCountOutputTypeCountActiveChannelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: activeChannelWhereInput
   }
+
 
 
   /**
@@ -1493,7 +1493,6 @@ export namespace Prisma {
     bot?: boolean
     savedAt?: boolean
   }
-
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messages?: boolean | User$messagesArgs<ExtArgs>
@@ -1918,6 +1917,7 @@ export namespace Prisma {
     
 
   // Custom InputTypes
+
   /**
    * User findUnique
    */
@@ -1927,7 +1927,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -1935,6 +1935,7 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
+
 
   /**
    * User findUniqueOrThrow
@@ -1945,7 +1946,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -1953,6 +1954,7 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
+
 
   /**
    * User findFirst
@@ -1963,7 +1965,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2001,6 +2003,7 @@ export namespace Prisma {
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
+
 
   /**
    * User findFirstOrThrow
@@ -2011,7 +2014,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2050,6 +2053,7 @@ export namespace Prisma {
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
+
   /**
    * User findMany
    */
@@ -2059,7 +2063,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2093,6 +2097,7 @@ export namespace Prisma {
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
+
   /**
    * User create
    */
@@ -2102,7 +2107,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2110,6 +2115,7 @@ export namespace Prisma {
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
+
 
   /**
    * User createMany
@@ -2122,6 +2128,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * User update
    */
@@ -2131,7 +2138,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2143,6 +2150,7 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
+
 
   /**
    * User updateMany
@@ -2158,6 +2166,7 @@ export namespace Prisma {
     where?: UserWhereInput
   }
 
+
   /**
    * User upsert
    */
@@ -2167,7 +2176,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2184,6 +2193,7 @@ export namespace Prisma {
     update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
+
   /**
    * User delete
    */
@@ -2193,7 +2203,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2201,6 +2211,7 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
+
 
   /**
    * User deleteMany
@@ -2212,6 +2223,7 @@ export namespace Prisma {
     where?: UserWhereInput
   }
 
+
   /**
    * User.messages
    */
@@ -2221,7 +2233,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
@@ -2232,6 +2244,7 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
+
   /**
    * User without action
    */
@@ -2241,10 +2254,11 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: UserInclude<ExtArgs> | null
   }
+
 
 
   /**
@@ -2440,7 +2454,6 @@ export namespace Prisma {
     content?: boolean
     savedAt?: boolean
   }
-
 
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guild?: boolean | GuildDefaultArgs<ExtArgs>
@@ -2870,6 +2883,7 @@ export namespace Prisma {
     
 
   // Custom InputTypes
+
   /**
    * Message findUnique
    */
@@ -2879,7 +2893,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2887,6 +2901,7 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
+
 
   /**
    * Message findUniqueOrThrow
@@ -2897,7 +2912,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2905,6 +2920,7 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
+
 
   /**
    * Message findFirst
@@ -2915,7 +2931,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2953,6 +2969,7 @@ export namespace Prisma {
      */
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
+
 
   /**
    * Message findFirstOrThrow
@@ -2963,7 +2980,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3002,6 +3019,7 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
+
   /**
    * Message findMany
    */
@@ -3011,7 +3029,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3045,6 +3063,7 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
+
   /**
    * Message create
    */
@@ -3054,7 +3073,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3062,6 +3081,7 @@ export namespace Prisma {
      */
     data: XOR<MessageCreateInput, MessageUncheckedCreateInput>
   }
+
 
   /**
    * Message createMany
@@ -3074,6 +3094,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Message update
    */
@@ -3083,7 +3104,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3095,6 +3116,7 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
+
 
   /**
    * Message updateMany
@@ -3110,6 +3132,7 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
+
   /**
    * Message upsert
    */
@@ -3119,7 +3142,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3136,6 +3159,7 @@ export namespace Prisma {
     update: XOR<MessageUpdateInput, MessageUncheckedUpdateInput>
   }
 
+
   /**
    * Message delete
    */
@@ -3145,7 +3169,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3153,6 +3177,7 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
+
 
   /**
    * Message deleteMany
@@ -3164,6 +3189,7 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
+
   /**
    * Message without action
    */
@@ -3173,10 +3199,11 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
   }
+
 
 
   /**
@@ -3337,7 +3364,6 @@ export namespace Prisma {
     logging?: boolean
     savedAt?: boolean
   }
-
 
   export type GuildInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messages?: boolean | Guild$messagesArgs<ExtArgs>
@@ -3760,6 +3786,7 @@ export namespace Prisma {
     
 
   // Custom InputTypes
+
   /**
    * Guild findUnique
    */
@@ -3769,7 +3796,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3777,6 +3804,7 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
+
 
   /**
    * Guild findUniqueOrThrow
@@ -3787,7 +3815,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3795,6 +3823,7 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
+
 
   /**
    * Guild findFirst
@@ -3805,7 +3834,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3843,6 +3872,7 @@ export namespace Prisma {
      */
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
+
 
   /**
    * Guild findFirstOrThrow
@@ -3853,7 +3883,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3892,6 +3922,7 @@ export namespace Prisma {
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
 
+
   /**
    * Guild findMany
    */
@@ -3901,7 +3932,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3935,6 +3966,7 @@ export namespace Prisma {
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
 
+
   /**
    * Guild create
    */
@@ -3944,7 +3976,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3952,6 +3984,7 @@ export namespace Prisma {
      */
     data: XOR<GuildCreateInput, GuildUncheckedCreateInput>
   }
+
 
   /**
    * Guild createMany
@@ -3964,6 +3997,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * Guild update
    */
@@ -3973,7 +4007,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3985,6 +4019,7 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
+
 
   /**
    * Guild updateMany
@@ -4000,6 +4035,7 @@ export namespace Prisma {
     where?: GuildWhereInput
   }
 
+
   /**
    * Guild upsert
    */
@@ -4009,7 +4045,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -4026,6 +4062,7 @@ export namespace Prisma {
     update: XOR<GuildUpdateInput, GuildUncheckedUpdateInput>
   }
 
+
   /**
    * Guild delete
    */
@@ -4035,7 +4072,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -4043,6 +4080,7 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
+
 
   /**
    * Guild deleteMany
@@ -4054,6 +4092,7 @@ export namespace Prisma {
     where?: GuildWhereInput
   }
 
+
   /**
    * Guild.messages
    */
@@ -4063,7 +4102,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
@@ -4074,6 +4113,7 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
+
   /**
    * Guild.activeChannels
    */
@@ -4083,7 +4123,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     where?: activeChannelWhereInput
@@ -4094,6 +4134,7 @@ export namespace Prisma {
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
 
+
   /**
    * Guild without action
    */
@@ -4103,10 +4144,11 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: GuildInclude<ExtArgs> | null
   }
+
 
 
   /**
@@ -4256,7 +4298,6 @@ export namespace Prisma {
     id?: boolean
     guildID?: boolean
   }
-
 
   export type activeChannelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guild?: boolean | GuildDefaultArgs<ExtArgs>
@@ -4672,6 +4713,7 @@ export namespace Prisma {
     
 
   // Custom InputTypes
+
   /**
    * activeChannel findUnique
    */
@@ -4681,7 +4723,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4689,6 +4731,7 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
+
 
   /**
    * activeChannel findUniqueOrThrow
@@ -4699,7 +4742,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4707,6 +4750,7 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
+
 
   /**
    * activeChannel findFirst
@@ -4717,7 +4761,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4755,6 +4799,7 @@ export namespace Prisma {
      */
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
+
 
   /**
    * activeChannel findFirstOrThrow
@@ -4765,7 +4810,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4804,6 +4849,7 @@ export namespace Prisma {
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
 
+
   /**
    * activeChannel findMany
    */
@@ -4813,7 +4859,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4847,6 +4893,7 @@ export namespace Prisma {
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
 
+
   /**
    * activeChannel create
    */
@@ -4856,7 +4903,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4864,6 +4911,7 @@ export namespace Prisma {
      */
     data: XOR<activeChannelCreateInput, activeChannelUncheckedCreateInput>
   }
+
 
   /**
    * activeChannel createMany
@@ -4876,6 +4924,7 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+
   /**
    * activeChannel update
    */
@@ -4885,7 +4934,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4897,6 +4946,7 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
+
 
   /**
    * activeChannel updateMany
@@ -4912,6 +4962,7 @@ export namespace Prisma {
     where?: activeChannelWhereInput
   }
 
+
   /**
    * activeChannel upsert
    */
@@ -4921,7 +4972,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4938,6 +4989,7 @@ export namespace Prisma {
     update: XOR<activeChannelUpdateInput, activeChannelUncheckedUpdateInput>
   }
 
+
   /**
    * activeChannel delete
    */
@@ -4947,7 +4999,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4955,6 +5007,7 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
+
 
   /**
    * activeChannel deleteMany
@@ -4966,6 +5019,7 @@ export namespace Prisma {
     where?: activeChannelWhereInput
   }
 
+
   /**
    * activeChannel without action
    */
@@ -4975,10 +5029,11 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
+     * Choose, which related nodes to fetch as well.
      */
     include?: activeChannelInclude<ExtArgs> | null
   }
+
 
 
   /**
@@ -5136,7 +5191,6 @@ export namespace Prisma {
     message?: boolean
     savedAt?: boolean
   }
-
 
 
   export type $feedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5547,6 +5601,7 @@ export namespace Prisma {
     
 
   // Custom InputTypes
+
   /**
    * feedback findUnique
    */
@@ -5561,6 +5616,7 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
+
   /**
    * feedback findUniqueOrThrow
    */
@@ -5574,6 +5630,7 @@ export namespace Prisma {
      */
     where: feedbackWhereUniqueInput
   }
+
 
   /**
    * feedback findFirst
@@ -5619,6 +5676,7 @@ export namespace Prisma {
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
+
   /**
    * feedback findFirstOrThrow
    */
@@ -5663,6 +5721,7 @@ export namespace Prisma {
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
+
   /**
    * feedback findMany
    */
@@ -5702,6 +5761,7 @@ export namespace Prisma {
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
+
   /**
    * feedback create
    */
@@ -5716,6 +5776,7 @@ export namespace Prisma {
     data: XOR<feedbackCreateInput, feedbackUncheckedCreateInput>
   }
 
+
   /**
    * feedback createMany
    */
@@ -5726,6 +5787,7 @@ export namespace Prisma {
     data: feedbackCreateManyInput | feedbackCreateManyInput[]
     skipDuplicates?: boolean
   }
+
 
   /**
    * feedback update
@@ -5745,6 +5807,7 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
+
   /**
    * feedback updateMany
    */
@@ -5758,6 +5821,7 @@ export namespace Prisma {
      */
     where?: feedbackWhereInput
   }
+
 
   /**
    * feedback upsert
@@ -5781,6 +5845,7 @@ export namespace Prisma {
     update: XOR<feedbackUpdateInput, feedbackUncheckedUpdateInput>
   }
 
+
   /**
    * feedback delete
    */
@@ -5795,6 +5860,7 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
+
   /**
    * feedback deleteMany
    */
@@ -5805,6 +5871,7 @@ export namespace Prisma {
     where?: feedbackWhereInput
   }
 
+
   /**
    * feedback without action
    */
@@ -5814,6 +5881,7 @@ export namespace Prisma {
      */
     select?: feedbackSelect<ExtArgs> | null
   }
+
 
 
   /**
