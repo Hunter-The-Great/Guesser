@@ -58,7 +58,6 @@ const execute = async (interaction: Interaction) => {
             }
         }
         try {
-            console.log("E");
             posthog.capture({
                 event: "guesser-command",
                 distinctId: interaction.user.id,
@@ -72,7 +71,6 @@ const execute = async (interaction: Interaction) => {
                     options: interaction.options._hoistedOptions,
                 },
             });
-            console.log("f");
         } catch (err) {
             console.error("Posthog Error:\n", err);
             sentry.captureException(err);
