@@ -226,79 +226,101 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                 });
                 let guessed: string[] = [];
                 collector.on("collect", async (i) => {
-                    if (guessed.includes(i.user.id)) {
-                        await i.reply({
-                            content: "You already guessed.",
-                            ephemeral: true,
-                        });
-                        return;
-                    }
-                    guessed.push(i.user.id);
-                    await prisma.user.upsert({
-                        where: { id: i.user.id },
-                        create: {
-                            id: i.user.id,
-                            username: i.user.username,
-                            bot: i.user.bot,
-                            guessingAttempts: 1,
-                            guessingPoints:
-                                i.customId.split(":")[1] === correctAnswer
-                                    ? 1
-                                    : 0,
-                        },
-                        update: {
-                            guessingAttempts: { increment: 1 },
-                            guessingPoints: {
-                                increment:
+                    try {
+                        if (guessed.includes(i.user.id)) {
+                            await i.reply({
+                                content: "You already guessed.",
+                                ephemeral: true,
+                            });
+                            return;
+                        }
+                        guessed.push(i.user.id);
+                        await prisma.user.upsert({
+                            where: { id: i.user.id },
+                            create: {
+                                id: i.user.id,
+                                username: i.user.username,
+                                bot: i.user.bot,
+                                guessingAttempts: 1,
+                                guessingPoints:
                                     i.customId.split(":")[1] === correctAnswer
                                         ? 1
                                         : 0,
                             },
-                        },
-                    });
-                    const user = userMap.find(
-                        (user) => user.name === i.customId.split(":")[1]
-                    );
-                    if (user?.value === " ") {
-                        user.value = i.user.username;
-                    } else if (user) {
-                        user.value += `\n${i.user.username}`;
-                    }
-                    const response = new EmbedBuilder()
-                        .setColor(0x00ffff)
-                        .setTitle(`${message.content}`)
-                        .addFields(userMap);
-                    await i.update({ embeds: [response], components: [row] });
-                });
-                collector.on("end", async () => {
-                    const row =
-                        new ActionRowBuilder<ButtonBuilder>().addComponents(
-                            usernames.map((username) =>
-                                new ButtonBuilder()
-                                    .setCustomId(`guessing-game:${username}`)
-                                    .setLabel(username)
-                                    .setStyle(ButtonStyle.Primary)
-                                    .setDisabled(true)
-                            )
+                            update: {
+                                guessingAttempts: { increment: 1 },
+                                guessingPoints: {
+                                    increment:
+                                        i.customId.split(":")[1] ===
+                                        correctAnswer
+                                            ? 1
+                                            : 0,
+                                },
+                            },
+                        });
+                        const user = userMap.find(
+                            (user) => user.name === i.customId.split(":")[1]
                         );
-                    for (const user of userMap) {
-                        if (user.name === correctAnswer) {
-                            user.name = `:white_check_mark:${user.name}:white_check_mark:`;
-                            continue;
+                        if (user?.value === " ") {
+                            user.value = i.user.username;
+                        } else if (user) {
+                            user.value += `\n${i.user.username}`;
                         }
-                        user.name = `:x:${user.name}:x:`;
+                        const response = new EmbedBuilder()
+                            .setColor(0x00ffff)
+                            .setTitle(`${message.content}`)
+                            .addFields(userMap);
+                        await i.update({
+                            embeds: [response],
+                            components: [row],
+                        });
+                    } catch (err) {
+                        sentry.captureException(err);
+                        console.error(err);
                     }
-                    const response = new EmbedBuilder()
-                        .setColor(0x00ffff)
-                        .setTitle(`${message.content}`)
-                        .setDescription(
-                            `Author: <@${messageAuthor}>\nLink: ${messageLink}`
-                        )
-                        .addFields(userMap);
-                    interaction.editReply({
-                        embeds: [response],
-                        components: [row],
-                    });
+                });
+                collector.on("end", async (_, reason) => {
+                    if (reason === "messageDelete") {
+                        sentry.captureMessage(
+                            "Someone deleted the guessing game"
+                        );
+                        return;
+                    }
+                    try {
+                        const row =
+                            new ActionRowBuilder<ButtonBuilder>().addComponents(
+                                usernames.map((username) =>
+                                    new ButtonBuilder()
+                                        .setCustomId(
+                                            `guessing-game:${username}`
+                                        )
+                                        .setLabel(username)
+                                        .setStyle(ButtonStyle.Primary)
+                                        .setDisabled(true)
+                                )
+                            );
+                        for (const user of userMap) {
+                            if (user.name === correctAnswer) {
+                                user.name = `:white_check_mark:${user.name}:white_check_mark:`;
+                                continue;
+                            }
+                            user.name = `:x:${user.name}:x:`;
+                        }
+                        const response = new EmbedBuilder()
+                            .setColor(0x00ffff)
+                            .setTitle(`${message.content}`)
+                            .setDescription(
+                                `Author: <@${messageAuthor}>\nLink: ${messageLink}`
+                            )
+                            .addFields(userMap);
+                        interaction.editReply({
+                            embeds: [response],
+                            components: [row],
+                        });
+                    } catch (err) {
+                        sentry.captureException(err);
+                        console.error(err);
+                    }
                 });
             } catch (err) {
                 sentry.captureException(err);
