@@ -95,15 +95,19 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                         (BigInt(randDate.valueOf()) - BigInt(1420070400000)) <<
                         BigInt(22)
                     ).toString();
-                    message = (
-                        await channel.messages.fetch({
-                            limit: 50,
-                            before: snowflake,
-                        })
-                    ).random();
+                    try {
+                        message = (
+                            await channel.messages.fetch({
+                                limit: 50,
+                                before: snowflake,
+                            })
+                        ).random();
+                    } catch (err) {
+                        sentry.captureException(err);
+                        continue;
+                    }
                     if (!message) continue;
                     if (
-                        message &&
                         message.content !== "" &&
                         !message.author.bot &&
                         message.content.length <= 256
@@ -111,11 +115,7 @@ const execute = async (interaction: ChatInputCommandInteraction) => {
                         break;
                     start = randDate.valueOf();
                 }
-                if (
-                    !message.content ||
-                    message.content === "" ||
-                    message.author.bot
-                ) {
+                if (!message || message.content === "" || message.author.bot) {
                     await interaction.editReply({
                         content: "Unable to find suitable message.",
                     });
