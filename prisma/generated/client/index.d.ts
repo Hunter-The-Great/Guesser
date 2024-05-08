@@ -267,7 +267,7 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.11.0
+   * Prisma Client JS version: 5.13.0
    * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
    */
   export type PrismaVersion = {
@@ -395,6 +395,11 @@ export namespace Prisma {
     include: any
   }
 
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
   /**
    * Get the type of the value, that the Promise holds.
    */
@@ -443,7 +448,9 @@ export namespace Prisma {
   } &
     (T extends SelectAndInclude
       ? 'Please either choose `select` or `include`.'
-      : {})
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
 
   /**
    * Subset + Intersection
@@ -1202,7 +1209,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * UserCountOutputType without action
    */
@@ -1213,14 +1219,12 @@ export namespace Prisma {
     select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * UserCountOutputType without action
    */
   export type UserCountOutputTypeCountMessagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: MessageWhereInput
   }
-
 
 
   /**
@@ -1238,7 +1242,6 @@ export namespace Prisma {
   }
 
   // Custom InputTypes
-
   /**
    * GuildCountOutputType without action
    */
@@ -1249,7 +1252,6 @@ export namespace Prisma {
     select?: GuildCountOutputTypeSelect<ExtArgs> | null
   }
 
-
   /**
    * GuildCountOutputType without action
    */
@@ -1257,14 +1259,12 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
-
   /**
    * GuildCountOutputType without action
    */
   export type GuildCountOutputTypeCountActiveChannelsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: activeChannelWhereInput
   }
-
 
 
   /**
@@ -1370,7 +1370,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1493,6 +1493,7 @@ export namespace Prisma {
     bot?: boolean
     savedAt?: boolean
   }
+
 
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messages?: boolean | User$messagesArgs<ExtArgs>
@@ -1917,7 +1918,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * User findUnique
    */
@@ -1927,7 +1927,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -1935,7 +1935,6 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
-
 
   /**
    * User findUniqueOrThrow
@@ -1946,7 +1945,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -1954,7 +1953,6 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
-
 
   /**
    * User findFirst
@@ -1965,7 +1963,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -1977,7 +1975,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2003,7 +2001,6 @@ export namespace Prisma {
      */
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
-
 
   /**
    * User findFirstOrThrow
@@ -2014,7 +2011,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2026,7 +2023,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2053,7 +2050,6 @@ export namespace Prisma {
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
-
   /**
    * User findMany
    */
@@ -2063,7 +2059,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2075,7 +2071,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2097,7 +2093,6 @@ export namespace Prisma {
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
-
   /**
    * User create
    */
@@ -2107,7 +2102,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2115,7 +2110,6 @@ export namespace Prisma {
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
-
 
   /**
    * User createMany
@@ -2128,7 +2122,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-
   /**
    * User update
    */
@@ -2138,7 +2131,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2150,7 +2143,6 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
-
 
   /**
    * User updateMany
@@ -2166,7 +2158,6 @@ export namespace Prisma {
     where?: UserWhereInput
   }
 
-
   /**
    * User upsert
    */
@@ -2176,7 +2167,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2193,7 +2184,6 @@ export namespace Prisma {
     update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
-
   /**
    * User delete
    */
@@ -2203,7 +2193,7 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
     /**
@@ -2211,7 +2201,6 @@ export namespace Prisma {
      */
     where: UserWhereUniqueInput
   }
-
 
   /**
    * User deleteMany
@@ -2223,7 +2212,6 @@ export namespace Prisma {
     where?: UserWhereInput
   }
 
-
   /**
    * User.messages
    */
@@ -2233,17 +2221,16 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     cursor?: MessageWhereUniqueInput
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
-
 
   /**
    * User without action
@@ -2254,11 +2241,10 @@ export namespace Prisma {
      */
     select?: UserSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: UserInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -2344,7 +2330,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2454,6 +2440,7 @@ export namespace Prisma {
     content?: boolean
     savedAt?: boolean
   }
+
 
   export type MessageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guild?: boolean | GuildDefaultArgs<ExtArgs>
@@ -2883,7 +2870,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Message findUnique
    */
@@ -2893,7 +2879,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2901,7 +2887,6 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
-
 
   /**
    * Message findUniqueOrThrow
@@ -2912,7 +2897,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2920,7 +2905,6 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
-
 
   /**
    * Message findFirst
@@ -2931,7 +2915,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2943,7 +2927,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2969,7 +2953,6 @@ export namespace Prisma {
      */
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
-
 
   /**
    * Message findFirstOrThrow
@@ -2980,7 +2963,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -2992,7 +2975,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3019,7 +3002,6 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
-
   /**
    * Message findMany
    */
@@ -3029,7 +3011,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3041,7 +3023,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3063,7 +3045,6 @@ export namespace Prisma {
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
 
-
   /**
    * Message create
    */
@@ -3073,7 +3054,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3081,7 +3062,6 @@ export namespace Prisma {
      */
     data: XOR<MessageCreateInput, MessageUncheckedCreateInput>
   }
-
 
   /**
    * Message createMany
@@ -3094,7 +3074,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-
   /**
    * Message update
    */
@@ -3104,7 +3083,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3116,7 +3095,6 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
-
 
   /**
    * Message updateMany
@@ -3132,7 +3110,6 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
-
   /**
    * Message upsert
    */
@@ -3142,7 +3119,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3159,7 +3136,6 @@ export namespace Prisma {
     update: XOR<MessageUpdateInput, MessageUncheckedUpdateInput>
   }
 
-
   /**
    * Message delete
    */
@@ -3169,7 +3145,7 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     /**
@@ -3177,7 +3153,6 @@ export namespace Prisma {
      */
     where: MessageWhereUniqueInput
   }
-
 
   /**
    * Message deleteMany
@@ -3189,7 +3164,6 @@ export namespace Prisma {
     where?: MessageWhereInput
   }
 
-
   /**
    * Message without action
    */
@@ -3199,11 +3173,10 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -3265,7 +3238,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3364,6 +3337,7 @@ export namespace Prisma {
     logging?: boolean
     savedAt?: boolean
   }
+
 
   export type GuildInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     messages?: boolean | Guild$messagesArgs<ExtArgs>
@@ -3786,7 +3760,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * Guild findUnique
    */
@@ -3796,7 +3769,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3804,7 +3777,6 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
-
 
   /**
    * Guild findUniqueOrThrow
@@ -3815,7 +3787,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3823,7 +3795,6 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
-
 
   /**
    * Guild findFirst
@@ -3834,7 +3805,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3846,7 +3817,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3872,7 +3843,6 @@ export namespace Prisma {
      */
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
-
 
   /**
    * Guild findFirstOrThrow
@@ -3883,7 +3853,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3895,7 +3865,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3922,7 +3892,6 @@ export namespace Prisma {
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
 
-
   /**
    * Guild findMany
    */
@@ -3932,7 +3901,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3944,7 +3913,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3966,7 +3935,6 @@ export namespace Prisma {
     distinct?: GuildScalarFieldEnum | GuildScalarFieldEnum[]
   }
 
-
   /**
    * Guild create
    */
@@ -3976,7 +3944,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -3984,7 +3952,6 @@ export namespace Prisma {
      */
     data: XOR<GuildCreateInput, GuildUncheckedCreateInput>
   }
-
 
   /**
    * Guild createMany
@@ -3997,7 +3964,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-
   /**
    * Guild update
    */
@@ -4007,7 +3973,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -4019,7 +3985,6 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
-
 
   /**
    * Guild updateMany
@@ -4035,7 +4000,6 @@ export namespace Prisma {
     where?: GuildWhereInput
   }
 
-
   /**
    * Guild upsert
    */
@@ -4045,7 +4009,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -4062,7 +4026,6 @@ export namespace Prisma {
     update: XOR<GuildUpdateInput, GuildUncheckedUpdateInput>
   }
 
-
   /**
    * Guild delete
    */
@@ -4072,7 +4035,7 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
     /**
@@ -4080,7 +4043,6 @@ export namespace Prisma {
      */
     where: GuildWhereUniqueInput
   }
-
 
   /**
    * Guild deleteMany
@@ -4092,7 +4054,6 @@ export namespace Prisma {
     where?: GuildWhereInput
   }
 
-
   /**
    * Guild.messages
    */
@@ -4102,17 +4063,16 @@ export namespace Prisma {
      */
     select?: MessageSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
     cursor?: MessageWhereUniqueInput
     take?: number
     skip?: number
     distinct?: MessageScalarFieldEnum | MessageScalarFieldEnum[]
   }
-
 
   /**
    * Guild.activeChannels
@@ -4123,17 +4083,16 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     where?: activeChannelWhereInput
-    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
     cursor?: activeChannelWhereUniqueInput
     take?: number
     skip?: number
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
-
 
   /**
    * Guild without action
@@ -4144,11 +4103,10 @@ export namespace Prisma {
      */
     select?: GuildSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: GuildInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -4204,7 +4162,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4298,6 +4256,7 @@ export namespace Prisma {
     id?: boolean
     guildID?: boolean
   }
+
 
   export type activeChannelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     guild?: boolean | GuildDefaultArgs<ExtArgs>
@@ -4713,7 +4672,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * activeChannel findUnique
    */
@@ -4723,7 +4681,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4731,7 +4689,6 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
-
 
   /**
    * activeChannel findUniqueOrThrow
@@ -4742,7 +4699,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4750,7 +4707,6 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
-
 
   /**
    * activeChannel findFirst
@@ -4761,7 +4717,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4773,7 +4729,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4799,7 +4755,6 @@ export namespace Prisma {
      */
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
-
 
   /**
    * activeChannel findFirstOrThrow
@@ -4810,7 +4765,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4822,7 +4777,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4849,7 +4804,6 @@ export namespace Prisma {
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
 
-
   /**
    * activeChannel findMany
    */
@@ -4859,7 +4813,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4871,7 +4825,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4893,7 +4847,6 @@ export namespace Prisma {
     distinct?: ActiveChannelScalarFieldEnum | ActiveChannelScalarFieldEnum[]
   }
 
-
   /**
    * activeChannel create
    */
@@ -4903,7 +4856,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4911,7 +4864,6 @@ export namespace Prisma {
      */
     data: XOR<activeChannelCreateInput, activeChannelUncheckedCreateInput>
   }
-
 
   /**
    * activeChannel createMany
@@ -4924,7 +4876,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-
   /**
    * activeChannel update
    */
@@ -4934,7 +4885,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4946,7 +4897,6 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
-
 
   /**
    * activeChannel updateMany
@@ -4962,7 +4912,6 @@ export namespace Prisma {
     where?: activeChannelWhereInput
   }
 
-
   /**
    * activeChannel upsert
    */
@@ -4972,7 +4921,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -4989,7 +4938,6 @@ export namespace Prisma {
     update: XOR<activeChannelUpdateInput, activeChannelUncheckedUpdateInput>
   }
 
-
   /**
    * activeChannel delete
    */
@@ -4999,7 +4947,7 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
     /**
@@ -5007,7 +4955,6 @@ export namespace Prisma {
      */
     where: activeChannelWhereUniqueInput
   }
-
 
   /**
    * activeChannel deleteMany
@@ -5019,7 +4966,6 @@ export namespace Prisma {
     where?: activeChannelWhereInput
   }
 
-
   /**
    * activeChannel without action
    */
@@ -5029,11 +4975,10 @@ export namespace Prisma {
      */
     select?: activeChannelSelect<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well.
+     * Choose, which related nodes to fetch as well
      */
     include?: activeChannelInclude<ExtArgs> | null
   }
-
 
 
   /**
@@ -5095,7 +5040,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5191,6 +5136,7 @@ export namespace Prisma {
     message?: boolean
     savedAt?: boolean
   }
+
 
 
   export type $feedbackPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5601,7 +5547,6 @@ export namespace Prisma {
     
 
   // Custom InputTypes
-
   /**
    * feedback findUnique
    */
@@ -5616,7 +5561,6 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
-
   /**
    * feedback findUniqueOrThrow
    */
@@ -5630,7 +5574,6 @@ export namespace Prisma {
      */
     where: feedbackWhereUniqueInput
   }
-
 
   /**
    * feedback findFirst
@@ -5649,7 +5592,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5675,7 +5618,6 @@ export namespace Prisma {
      */
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
-
 
   /**
    * feedback findFirstOrThrow
@@ -5694,7 +5636,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5721,7 +5663,6 @@ export namespace Prisma {
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
-
   /**
    * feedback findMany
    */
@@ -5739,7 +5680,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
+    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5761,7 +5702,6 @@ export namespace Prisma {
     distinct?: FeedbackScalarFieldEnum | FeedbackScalarFieldEnum[]
   }
 
-
   /**
    * feedback create
    */
@@ -5776,7 +5716,6 @@ export namespace Prisma {
     data: XOR<feedbackCreateInput, feedbackUncheckedCreateInput>
   }
 
-
   /**
    * feedback createMany
    */
@@ -5787,7 +5726,6 @@ export namespace Prisma {
     data: feedbackCreateManyInput | feedbackCreateManyInput[]
     skipDuplicates?: boolean
   }
-
 
   /**
    * feedback update
@@ -5807,7 +5745,6 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
-
   /**
    * feedback updateMany
    */
@@ -5821,7 +5758,6 @@ export namespace Prisma {
      */
     where?: feedbackWhereInput
   }
-
 
   /**
    * feedback upsert
@@ -5845,7 +5781,6 @@ export namespace Prisma {
     update: XOR<feedbackUpdateInput, feedbackUncheckedUpdateInput>
   }
 
-
   /**
    * feedback delete
    */
@@ -5860,7 +5795,6 @@ export namespace Prisma {
     where: feedbackWhereUniqueInput
   }
 
-
   /**
    * feedback deleteMany
    */
@@ -5871,7 +5805,6 @@ export namespace Prisma {
     where?: feedbackWhereInput
   }
 
-
   /**
    * feedback without action
    */
@@ -5881,7 +5814,6 @@ export namespace Prisma {
      */
     select?: feedbackSelect<ExtArgs> | null
   }
-
 
 
   /**
@@ -5957,46 +5889,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const UserOrderByRelevanceFieldEnum: {
-    id: 'id',
-    username: 'username'
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
   };
 
-  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
-
-
-  export const MessageOrderByRelevanceFieldEnum: {
-    id: 'id',
-    guildID: 'guildID',
-    channel: 'channel',
-    author: 'author',
-    content: 'content'
-  };
-
-  export type MessageOrderByRelevanceFieldEnum = (typeof MessageOrderByRelevanceFieldEnum)[keyof typeof MessageOrderByRelevanceFieldEnum]
-
-
-  export const GuildOrderByRelevanceFieldEnum: {
-    id: 'id'
-  };
-
-  export type GuildOrderByRelevanceFieldEnum = (typeof GuildOrderByRelevanceFieldEnum)[keyof typeof GuildOrderByRelevanceFieldEnum]
-
-
-  export const activeChannelOrderByRelevanceFieldEnum: {
-    id: 'id',
-    guildID: 'guildID'
-  };
-
-  export type activeChannelOrderByRelevanceFieldEnum = (typeof activeChannelOrderByRelevanceFieldEnum)[keyof typeof activeChannelOrderByRelevanceFieldEnum]
-
-
-  export const feedbackOrderByRelevanceFieldEnum: {
-    id: 'id',
-    message: 'message'
-  };
-
-  export type feedbackOrderByRelevanceFieldEnum = (typeof feedbackOrderByRelevanceFieldEnum)[keyof typeof feedbackOrderByRelevanceFieldEnum]
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
   /**
@@ -6012,9 +5910,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
 
 
@@ -6033,9 +5945,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -6055,7 +5981,7 @@ export namespace Prisma {
     messages?: MessageListRelationFilter
   }
 
-  export type UserOrderByWithRelationAndSearchRelevanceInput = {
+  export type UserOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
     guessingPoints?: SortOrder
@@ -6063,7 +5989,6 @@ export namespace Prisma {
     bot?: SortOrder
     savedAt?: SortOrder
     messages?: MessageOrderByRelationAggregateInput
-    _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6120,7 +6045,7 @@ export namespace Prisma {
     user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
-  export type MessageOrderByWithRelationAndSearchRelevanceInput = {
+  export type MessageOrderByWithRelationInput = {
     id?: SortOrder
     guildID?: SortOrder
     channel?: SortOrder
@@ -6128,9 +6053,8 @@ export namespace Prisma {
     timestamp?: SortOrder
     content?: SortOrder
     savedAt?: SortOrder
-    guild?: GuildOrderByWithRelationAndSearchRelevanceInput
-    user?: UserOrderByWithRelationAndSearchRelevanceInput
-    _relevance?: MessageOrderByRelevanceInput
+    guild?: GuildOrderByWithRelationInput
+    user?: UserOrderByWithRelationInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -6185,13 +6109,12 @@ export namespace Prisma {
     activeChannels?: ActiveChannelListRelationFilter
   }
 
-  export type GuildOrderByWithRelationAndSearchRelevanceInput = {
+  export type GuildOrderByWithRelationInput = {
     id?: SortOrder
     logging?: SortOrder
     savedAt?: SortOrder
     messages?: MessageOrderByRelationAggregateInput
     activeChannels?: activeChannelOrderByRelationAggregateInput
-    _relevance?: GuildOrderByRelevanceInput
   }
 
   export type GuildWhereUniqueInput = Prisma.AtLeast<{
@@ -6232,11 +6155,10 @@ export namespace Prisma {
     guild?: XOR<GuildRelationFilter, GuildWhereInput>
   }
 
-  export type activeChannelOrderByWithRelationAndSearchRelevanceInput = {
+  export type activeChannelOrderByWithRelationInput = {
     id?: SortOrder
     guildID?: SortOrder
-    guild?: GuildOrderByWithRelationAndSearchRelevanceInput
-    _relevance?: activeChannelOrderByRelevanceInput
+    guild?: GuildOrderByWithRelationInput
   }
 
   export type activeChannelWhereUniqueInput = Prisma.AtLeast<{
@@ -6273,11 +6195,10 @@ export namespace Prisma {
     savedAt?: DateTimeFilter<"feedback"> | Date | string
   }
 
-  export type feedbackOrderByWithRelationAndSearchRelevanceInput = {
+  export type feedbackOrderByWithRelationInput = {
     id?: SortOrder
     message?: SortOrder
     savedAt?: SortOrder
-    _relevance?: feedbackOrderByRelevanceInput
   }
 
   export type feedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -6570,8 +6491,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6579,14 +6500,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6601,8 +6522,8 @@ export namespace Prisma {
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6618,12 +6539,6 @@ export namespace Prisma {
 
   export type MessageOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type UserOrderByRelevanceInput = {
-    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -6665,8 +6580,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -6674,7 +6589,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -6683,8 +6598,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -6707,8 +6622,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -6727,12 +6642,6 @@ export namespace Prisma {
   export type UserRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
-  }
-
-  export type MessageOrderByRelevanceInput = {
-    fields: MessageOrderByRelevanceFieldEnum | MessageOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type MessageCountOrderByAggregateInput = {
@@ -6775,12 +6684,6 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
-  export type GuildOrderByRelevanceInput = {
-    fields: GuildOrderByRelevanceFieldEnum | GuildOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type GuildCountOrderByAggregateInput = {
     id?: SortOrder
     logging?: SortOrder
@@ -6799,12 +6702,6 @@ export namespace Prisma {
     savedAt?: SortOrder
   }
 
-  export type activeChannelOrderByRelevanceInput = {
-    fields: activeChannelOrderByRelevanceFieldEnum | activeChannelOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type activeChannelCountOrderByAggregateInput = {
     id?: SortOrder
     guildID?: SortOrder
@@ -6818,12 +6715,6 @@ export namespace Prisma {
   export type activeChannelMinOrderByAggregateInput = {
     id?: SortOrder
     guildID?: SortOrder
-  }
-
-  export type feedbackOrderByRelevanceInput = {
-    fields: feedbackOrderByRelevanceFieldEnum | feedbackOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type feedbackCountOrderByAggregateInput = {
@@ -7034,8 +6925,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7043,14 +6934,13 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7065,8 +6955,8 @@ export namespace Prisma {
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -7076,8 +6966,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -7085,7 +6975,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -7094,8 +6983,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -7110,8 +6999,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -7129,8 +7018,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>

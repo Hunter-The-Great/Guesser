@@ -31,11 +31,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.11.0
+ * Prisma Client JS version: 5.13.0
  * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
  */
 Prisma.prismaVersion = {
-  client: "5.11.0",
+  client: "5.13.0",
   engine: "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b"
 }
 
@@ -129,31 +129,9 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
-exports.Prisma.UserOrderByRelevanceFieldEnum = {
-  id: 'id',
-  username: 'username'
-};
-
-exports.Prisma.MessageOrderByRelevanceFieldEnum = {
-  id: 'id',
-  guildID: 'guildID',
-  channel: 'channel',
-  author: 'author',
-  content: 'content'
-};
-
-exports.Prisma.GuildOrderByRelevanceFieldEnum = {
-  id: 'id'
-};
-
-exports.Prisma.activeChannelOrderByRelevanceFieldEnum = {
-  id: 'id',
-  guildID: 'guildID'
-};
-
-exports.Prisma.feedbackOrderByRelevanceFieldEnum = {
-  id: 'id',
-  message: 'message'
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 
@@ -196,10 +174,7 @@ const config = {
         "value": "debian-openssl-1.1.x"
       }
     ],
-    "previewFeatures": [
-      "fullTextIndex",
-      "fullTextSearch"
-    ],
+    "previewFeatures": [],
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -207,13 +182,12 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.11.0",
+  "clientVersion": "5.13.0",
   "engineVersion": "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b",
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "mysql",
-  "postinstall": true,
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -222,8 +196,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider        = \"prisma-client-js\"\n  binaryTargets   = [\"native\", \"debian-openssl-3.0.x\", \"debian-openssl-1.1.x\"]\n  output          = \"./generated/client\"\n  previewFeatures = [\"fullTextSearch\", \"fullTextIndex\"]\n}\n\ndatasource db {\n  provider = \"mysql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String    @id\n  username         String\n  //? display name\n  guessingPoints   Int       @default(0)\n  guessingAttempts Int       @default(0)\n  bot              Boolean   @default(false)\n  messages         Message[]\n  savedAt          DateTime  @default(now())\n}\n\nmodel Message {\n  id        String   @id\n  guildID   String\n  channel   String\n  author    String\n  timestamp DateTime\n  content   String   @db.VarChar(4000)\n  guild     Guild    @relation(fields: [guildID], references: [id])\n  user      User     @relation(fields: [author], references: [id])\n  savedAt   DateTime @default(now())\n}\n\nmodel Guild {\n  id             String          @id\n  logging        Boolean         @default(false)\n  savedAt        DateTime        @default(now())\n  messages       Message[]\n  activeChannels activeChannel[]\n}\n\nmodel activeChannel {\n  id      String @id\n  guildID String\n  guild   Guild  @relation(fields: [guildID], references: [id])\n}\n\nmodel feedback {\n  id      String   @id @default(cuid())\n  message String   @db.VarChar(500)\n  savedAt DateTime @default(now())\n\n  @@fulltext([message])\n}\n",
-  "inlineSchemaHash": "766dcedb538f345d70ad6b7dd3fdc471af179cbaed078a79c3ef8ac48e340a68",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"debian-openssl-1.1.x\"]\n  output        = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String    @id\n  username         String\n  //? display name\n  guessingPoints   Int       @default(0)\n  guessingAttempts Int       @default(0)\n  bot              Boolean   @default(false)\n  messages         Message[]\n  savedAt          DateTime  @default(now())\n}\n\nmodel Message {\n  id        String   @id\n  guildID   String\n  channel   String\n  author    String\n  timestamp DateTime\n  content   String   @db.VarChar(4000)\n  guild     Guild    @relation(fields: [guildID], references: [id])\n  user      User     @relation(fields: [author], references: [id])\n  savedAt   DateTime @default(now())\n}\n\nmodel Guild {\n  id             String          @id\n  logging        Boolean         @default(false)\n  savedAt        DateTime        @default(now())\n  messages       Message[]\n  activeChannels activeChannel[]\n}\n\nmodel activeChannel {\n  id      String @id\n  guildID String\n  guild   Guild  @relation(fields: [guildID], references: [id])\n}\n\nmodel feedback {\n  id      String   @id @default(cuid())\n  message String   @db.VarChar(500)\n  savedAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "2653fd95ae65bbdf737d492d8e24fd729e3317c569ea66be034df061beb764c1",
   "copyEngine": true
 }
 
