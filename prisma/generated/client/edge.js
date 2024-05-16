@@ -31,11 +31,11 @@ exports.Prisma = Prisma
 exports.$Enums = {}
 
 /**
- * Prisma Client JS version: 5.13.0
+ * Prisma Client JS version: 5.14.0
  * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
  */
 Prisma.prismaVersion = {
-  client: "5.13.0",
+  client: "5.14.0",
   engine: "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b"
 }
 
@@ -133,6 +133,33 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.UserOrderByRelevanceFieldEnum = {
+  id: 'id',
+  username: 'username'
+};
+
+exports.Prisma.MessageOrderByRelevanceFieldEnum = {
+  id: 'id',
+  guildID: 'guildID',
+  channel: 'channel',
+  author: 'author',
+  content: 'content'
+};
+
+exports.Prisma.GuildOrderByRelevanceFieldEnum = {
+  id: 'id'
+};
+
+exports.Prisma.activeChannelOrderByRelevanceFieldEnum = {
+  id: 'id',
+  guildID: 'guildID'
+};
+
+exports.Prisma.feedbackOrderByRelevanceFieldEnum = {
+  id: 'id',
+  message: 'message'
+};
+
 
 exports.Prisma.ModelName = {
   User: 'User',
@@ -173,7 +200,9 @@ const config = {
         "value": "debian-openssl-1.1.x"
       }
     ],
-    "previewFeatures": [],
+    "previewFeatures": [
+      "fullTextSearch"
+    ],
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
@@ -181,12 +210,13 @@ const config = {
     "schemaEnvPath": "../../../.env"
   },
   "relativePath": "../..",
-  "clientVersion": "5.13.0",
+  "clientVersion": "5.14.0",
   "engineVersion": "b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b",
   "datasourceNames": [
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -195,8 +225,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\", \"debian-openssl-1.1.x\"]\n  output        = \"./generated/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String    @id\n  username         String\n  //? display name\n  guessingPoints   Int       @default(0)\n  guessingAttempts Int       @default(0)\n  bot              Boolean   @default(false)\n  messages         Message[]\n  savedAt          DateTime  @default(now())\n}\n\nmodel Message {\n  id        String   @id\n  guildID   String\n  channel   String\n  author    String\n  timestamp DateTime\n  content   String   @db.VarChar(4000)\n  guild     Guild    @relation(fields: [guildID], references: [id])\n  user      User     @relation(fields: [author], references: [id])\n  savedAt   DateTime @default(now())\n}\n\nmodel Guild {\n  id             String          @id\n  logging        Boolean         @default(false)\n  savedAt        DateTime        @default(now())\n  messages       Message[]\n  activeChannels activeChannel[]\n}\n\nmodel activeChannel {\n  id      String @id\n  guildID String\n  guild   Guild  @relation(fields: [guildID], references: [id])\n}\n\nmodel feedback {\n  id      String   @id @default(cuid())\n  message String   @db.VarChar(500)\n  savedAt DateTime @default(now())\n}\n",
-  "inlineSchemaHash": "2653fd95ae65bbdf737d492d8e24fd729e3317c569ea66be034df061beb764c1",
+  "inlineSchema": "generator client {\n  provider        = \"prisma-client-js\"\n  binaryTargets   = [\"native\", \"debian-openssl-3.0.x\", \"debian-openssl-1.1.x\"]\n  output          = \"./generated/client\"\n  previewFeatures = [\"fullTextSearch\"]\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String    @id\n  username         String\n  //? display name\n  guessingPoints   Int       @default(0)\n  guessingAttempts Int       @default(0)\n  bot              Boolean   @default(false)\n  messages         Message[]\n  savedAt          DateTime  @default(now())\n}\n\nmodel Message {\n  id        String   @id\n  guildID   String\n  channel   String\n  author    String\n  timestamp DateTime\n  content   String   @db.VarChar(4000)\n  guild     Guild    @relation(fields: [guildID], references: [id])\n  user      User     @relation(fields: [author], references: [id])\n  savedAt   DateTime @default(now())\n}\n\nmodel Guild {\n  id             String          @id\n  logging        Boolean         @default(false)\n  savedAt        DateTime        @default(now())\n  messages       Message[]\n  activeChannels activeChannel[]\n}\n\nmodel activeChannel {\n  id      String @id\n  guildID String\n  guild   Guild  @relation(fields: [guildID], references: [id])\n}\n\nmodel feedback {\n  id      String   @id @default(cuid())\n  message String   @db.VarChar(500)\n  savedAt DateTime @default(now())\n}\n",
+  "inlineSchemaHash": "6f1e5406d398a614733458e877e5820cbf36c435f6fc05ceafe29b7e63b04155",
   "copyEngine": true
 }
 config.dirname = '/'

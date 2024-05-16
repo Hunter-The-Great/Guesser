@@ -14,8 +14,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.11.0",
-    "@sentry/bun": "^7.108.0",
+    "@prisma/client": "^5.14.0",
+    "@sentry/bun": "^8.2.1",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.4",
     "nodemon": "^3.0.3",

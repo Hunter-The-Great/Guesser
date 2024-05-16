@@ -267,7 +267,7 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 5.13.0
+   * Prisma Client JS version: 5.14.0
    * Query Engine version: b9a39a7ee606c28e3455d0fd60e78c3ba82b1a2b
    */
   export type PrismaVersion = {
@@ -1147,6 +1147,7 @@ export namespace Prisma {
     | 'findFirstOrThrow'
     | 'create'
     | 'createMany'
+    | 'createManyAndReturn'
     | 'update'
     | 'updateMany'
     | 'upsert'
@@ -1370,7 +1371,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -1543,8 +1544,8 @@ export namespace Prisma {
     ): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one User that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one User that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
      * @example
      * // Get one User
@@ -1597,7 +1598,7 @@ export namespace Prisma {
      * Find zero or more Users that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Users
      * const users = await prisma.user.findMany()
@@ -1631,14 +1632,14 @@ export namespace Prisma {
 
     /**
      * Create many Users.
-     *     @param {UserCreateManyArgs} args - Arguments to create many Users.
-     *     @example
-     *     // Create many Users
-     *     const user = await prisma.user.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends UserCreateManyArgs<ExtArgs>>(
@@ -1975,7 +1976,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2023,7 +2024,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2071,7 +2072,7 @@ export namespace Prisma {
      * 
      * Determine the order of Users to fetch.
      */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    orderBy?: UserOrderByWithRelationAndSearchRelevanceInput | UserOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2225,7 +2226,7 @@ export namespace Prisma {
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     cursor?: MessageWhereUniqueInput
     take?: number
     skip?: number
@@ -2330,7 +2331,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2492,8 +2493,8 @@ export namespace Prisma {
     ): Prisma__MessageClient<$Result.GetResult<Prisma.$MessagePayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Message that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Message that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {MessageFindUniqueOrThrowArgs} args - Arguments to find a Message
      * @example
      * // Get one Message
@@ -2546,7 +2547,7 @@ export namespace Prisma {
      * Find zero or more Messages that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {MessageFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {MessageFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Messages
      * const messages = await prisma.message.findMany()
@@ -2580,14 +2581,14 @@ export namespace Prisma {
 
     /**
      * Create many Messages.
-     *     @param {MessageCreateManyArgs} args - Arguments to create many Messages.
-     *     @example
-     *     // Create many Messages
-     *     const message = await prisma.message.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {MessageCreateManyArgs} args - Arguments to create many Messages.
+     * @example
+     * // Create many Messages
+     * const message = await prisma.message.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends MessageCreateManyArgs<ExtArgs>>(
@@ -2927,7 +2928,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -2975,7 +2976,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3023,7 +3024,7 @@ export namespace Prisma {
      * 
      * Determine the order of Messages to fetch.
      */
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3238,7 +3239,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
+    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3386,8 +3387,8 @@ export namespace Prisma {
     ): Prisma__GuildClient<$Result.GetResult<Prisma.$GuildPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Guild that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Guild that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {GuildFindUniqueOrThrowArgs} args - Arguments to find a Guild
      * @example
      * // Get one Guild
@@ -3440,7 +3441,7 @@ export namespace Prisma {
      * Find zero or more Guilds that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {GuildFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {GuildFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Guilds
      * const guilds = await prisma.guild.findMany()
@@ -3474,14 +3475,14 @@ export namespace Prisma {
 
     /**
      * Create many Guilds.
-     *     @param {GuildCreateManyArgs} args - Arguments to create many Guilds.
-     *     @example
-     *     // Create many Guilds
-     *     const guild = await prisma.guild.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {GuildCreateManyArgs} args - Arguments to create many Guilds.
+     * @example
+     * // Create many Guilds
+     * const guild = await prisma.guild.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends GuildCreateManyArgs<ExtArgs>>(
@@ -3817,7 +3818,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
+    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3865,7 +3866,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
+    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -3913,7 +3914,7 @@ export namespace Prisma {
      * 
      * Determine the order of Guilds to fetch.
      */
-    orderBy?: GuildOrderByWithRelationInput | GuildOrderByWithRelationInput[]
+    orderBy?: GuildOrderByWithRelationAndSearchRelevanceInput | GuildOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4067,7 +4068,7 @@ export namespace Prisma {
      */
     include?: MessageInclude<ExtArgs> | null
     where?: MessageWhereInput
-    orderBy?: MessageOrderByWithRelationInput | MessageOrderByWithRelationInput[]
+    orderBy?: MessageOrderByWithRelationAndSearchRelevanceInput | MessageOrderByWithRelationAndSearchRelevanceInput[]
     cursor?: MessageWhereUniqueInput
     take?: number
     skip?: number
@@ -4087,7 +4088,7 @@ export namespace Prisma {
      */
     include?: activeChannelInclude<ExtArgs> | null
     where?: activeChannelWhereInput
-    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
+    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
     cursor?: activeChannelWhereUniqueInput
     take?: number
     skip?: number
@@ -4162,7 +4163,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
+    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4301,8 +4302,8 @@ export namespace Prisma {
     ): Prisma__activeChannelClient<$Result.GetResult<Prisma.$activeChannelPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one ActiveChannel that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one ActiveChannel that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {activeChannelFindUniqueOrThrowArgs} args - Arguments to find a ActiveChannel
      * @example
      * // Get one ActiveChannel
@@ -4355,7 +4356,7 @@ export namespace Prisma {
      * Find zero or more ActiveChannels that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {activeChannelFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {activeChannelFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all ActiveChannels
      * const activeChannels = await prisma.activeChannel.findMany()
@@ -4389,14 +4390,14 @@ export namespace Prisma {
 
     /**
      * Create many ActiveChannels.
-     *     @param {activeChannelCreateManyArgs} args - Arguments to create many ActiveChannels.
-     *     @example
-     *     // Create many ActiveChannels
-     *     const activeChannel = await prisma.activeChannel.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {activeChannelCreateManyArgs} args - Arguments to create many ActiveChannels.
+     * @example
+     * // Create many ActiveChannels
+     * const activeChannel = await prisma.activeChannel.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends activeChannelCreateManyArgs<ExtArgs>>(
@@ -4729,7 +4730,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
+    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4777,7 +4778,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
+    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -4825,7 +4826,7 @@ export namespace Prisma {
      * 
      * Determine the order of activeChannels to fetch.
      */
-    orderBy?: activeChannelOrderByWithRelationInput | activeChannelOrderByWithRelationInput[]
+    orderBy?: activeChannelOrderByWithRelationAndSearchRelevanceInput | activeChannelOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5040,7 +5041,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
+    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5176,8 +5177,8 @@ export namespace Prisma {
     ): Prisma__feedbackClient<$Result.GetResult<Prisma.$feedbackPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
 
     /**
-     * Find one Feedback that matches the filter or throw an error  with `error.code='P2025'` 
-     *     if no matches were found.
+     * Find one Feedback that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
      * @param {feedbackFindUniqueOrThrowArgs} args - Arguments to find a Feedback
      * @example
      * // Get one Feedback
@@ -5230,7 +5231,7 @@ export namespace Prisma {
      * Find zero or more Feedbacks that matches the filter.
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * @param {feedbackFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @param {feedbackFindManyArgs} args - Arguments to filter and select certain fields only.
      * @example
      * // Get all Feedbacks
      * const feedbacks = await prisma.feedback.findMany()
@@ -5264,14 +5265,14 @@ export namespace Prisma {
 
     /**
      * Create many Feedbacks.
-     *     @param {feedbackCreateManyArgs} args - Arguments to create many Feedbacks.
-     *     @example
-     *     // Create many Feedbacks
-     *     const feedback = await prisma.feedback.createMany({
-     *       data: {
-     *         // ... provide data here
-     *       }
-     *     })
+     * @param {feedbackCreateManyArgs} args - Arguments to create many Feedbacks.
+     * @example
+     * // Create many Feedbacks
+     * const feedback = await prisma.feedback.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
      *     
     **/
     createMany<T extends feedbackCreateManyArgs<ExtArgs>>(
@@ -5592,7 +5593,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
+    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5636,7 +5637,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
+    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5680,7 +5681,7 @@ export namespace Prisma {
      * 
      * Determine the order of feedbacks to fetch.
      */
-    orderBy?: feedbackOrderByWithRelationInput | feedbackOrderByWithRelationInput[]
+    orderBy?: feedbackOrderByWithRelationAndSearchRelevanceInput | feedbackOrderByWithRelationAndSearchRelevanceInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
      * 
@@ -5897,6 +5898,48 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const UserOrderByRelevanceFieldEnum: {
+    id: 'id',
+    username: 'username'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const MessageOrderByRelevanceFieldEnum: {
+    id: 'id',
+    guildID: 'guildID',
+    channel: 'channel',
+    author: 'author',
+    content: 'content'
+  };
+
+  export type MessageOrderByRelevanceFieldEnum = (typeof MessageOrderByRelevanceFieldEnum)[keyof typeof MessageOrderByRelevanceFieldEnum]
+
+
+  export const GuildOrderByRelevanceFieldEnum: {
+    id: 'id'
+  };
+
+  export type GuildOrderByRelevanceFieldEnum = (typeof GuildOrderByRelevanceFieldEnum)[keyof typeof GuildOrderByRelevanceFieldEnum]
+
+
+  export const activeChannelOrderByRelevanceFieldEnum: {
+    id: 'id',
+    guildID: 'guildID'
+  };
+
+  export type activeChannelOrderByRelevanceFieldEnum = (typeof activeChannelOrderByRelevanceFieldEnum)[keyof typeof activeChannelOrderByRelevanceFieldEnum]
+
+
+  export const feedbackOrderByRelevanceFieldEnum: {
+    id: 'id',
+    message: 'message'
+  };
+
+  export type feedbackOrderByRelevanceFieldEnum = (typeof feedbackOrderByRelevanceFieldEnum)[keyof typeof feedbackOrderByRelevanceFieldEnum]
+
+
   /**
    * Field references 
    */
@@ -5981,7 +6024,7 @@ export namespace Prisma {
     messages?: MessageListRelationFilter
   }
 
-  export type UserOrderByWithRelationInput = {
+  export type UserOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     username?: SortOrder
     guessingPoints?: SortOrder
@@ -5989,6 +6032,7 @@ export namespace Prisma {
     bot?: SortOrder
     savedAt?: SortOrder
     messages?: MessageOrderByRelationAggregateInput
+    _relevance?: UserOrderByRelevanceInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -6045,7 +6089,7 @@ export namespace Prisma {
     user?: XOR<UserRelationFilter, UserWhereInput>
   }
 
-  export type MessageOrderByWithRelationInput = {
+  export type MessageOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     guildID?: SortOrder
     channel?: SortOrder
@@ -6053,8 +6097,9 @@ export namespace Prisma {
     timestamp?: SortOrder
     content?: SortOrder
     savedAt?: SortOrder
-    guild?: GuildOrderByWithRelationInput
-    user?: UserOrderByWithRelationInput
+    guild?: GuildOrderByWithRelationAndSearchRelevanceInput
+    user?: UserOrderByWithRelationAndSearchRelevanceInput
+    _relevance?: MessageOrderByRelevanceInput
   }
 
   export type MessageWhereUniqueInput = Prisma.AtLeast<{
@@ -6109,12 +6154,13 @@ export namespace Prisma {
     activeChannels?: ActiveChannelListRelationFilter
   }
 
-  export type GuildOrderByWithRelationInput = {
+  export type GuildOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     logging?: SortOrder
     savedAt?: SortOrder
     messages?: MessageOrderByRelationAggregateInput
     activeChannels?: activeChannelOrderByRelationAggregateInput
+    _relevance?: GuildOrderByRelevanceInput
   }
 
   export type GuildWhereUniqueInput = Prisma.AtLeast<{
@@ -6155,10 +6201,11 @@ export namespace Prisma {
     guild?: XOR<GuildRelationFilter, GuildWhereInput>
   }
 
-  export type activeChannelOrderByWithRelationInput = {
+  export type activeChannelOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     guildID?: SortOrder
-    guild?: GuildOrderByWithRelationInput
+    guild?: GuildOrderByWithRelationAndSearchRelevanceInput
+    _relevance?: activeChannelOrderByRelevanceInput
   }
 
   export type activeChannelWhereUniqueInput = Prisma.AtLeast<{
@@ -6195,10 +6242,11 @@ export namespace Prisma {
     savedAt?: DateTimeFilter<"feedback"> | Date | string
   }
 
-  export type feedbackOrderByWithRelationInput = {
+  export type feedbackOrderByWithRelationAndSearchRelevanceInput = {
     id?: SortOrder
     message?: SortOrder
     savedAt?: SortOrder
+    _relevance?: feedbackOrderByRelevanceInput
   }
 
   export type feedbackWhereUniqueInput = Prisma.AtLeast<{
@@ -6500,6 +6548,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
@@ -6539,6 +6588,12 @@ export namespace Prisma {
 
   export type MessageOrderByRelationAggregateInput = {
     _count?: SortOrder
+  }
+
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -6589,6 +6644,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
@@ -6644,6 +6700,12 @@ export namespace Prisma {
     isNot?: UserWhereInput
   }
 
+  export type MessageOrderByRelevanceInput = {
+    fields: MessageOrderByRelevanceFieldEnum | MessageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type MessageCountOrderByAggregateInput = {
     id?: SortOrder
     guildID?: SortOrder
@@ -6684,6 +6746,12 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type GuildOrderByRelevanceInput = {
+    fields: GuildOrderByRelevanceFieldEnum | GuildOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type GuildCountOrderByAggregateInput = {
     id?: SortOrder
     logging?: SortOrder
@@ -6702,6 +6770,12 @@ export namespace Prisma {
     savedAt?: SortOrder
   }
 
+  export type activeChannelOrderByRelevanceInput = {
+    fields: activeChannelOrderByRelevanceFieldEnum | activeChannelOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
   export type activeChannelCountOrderByAggregateInput = {
     id?: SortOrder
     guildID?: SortOrder
@@ -6715,6 +6789,12 @@ export namespace Prisma {
   export type activeChannelMinOrderByAggregateInput = {
     id?: SortOrder
     guildID?: SortOrder
+  }
+
+  export type feedbackOrderByRelevanceInput = {
+    fields: feedbackOrderByRelevanceFieldEnum | feedbackOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
   }
 
   export type feedbackCountOrderByAggregateInput = {
@@ -6934,6 +7014,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
@@ -6975,6 +7056,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
