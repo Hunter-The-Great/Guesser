@@ -6,7 +6,7 @@ on:
             - "main"
 
 env:
-  TARGET_PLATFORMS: linux/amd64,linux/arm64
+  TARGET_PLATFORMS: linux/arm64
 
 jobs:
     commands:
